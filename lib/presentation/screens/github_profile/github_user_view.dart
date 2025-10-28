@@ -73,7 +73,7 @@ class GitHubUserView extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                       child: ListTile(
                         title: Text(repo.name),
-                        subtitle: Text(repo.description, maxLines: 2, overflow: TextOverflow.ellipsis),
+                        subtitle: Text('Lenguaje usado: ${repo.language}', maxLines: 2, overflow: TextOverflow.ellipsis),
                       ),
                     ),
                   ),
@@ -92,6 +92,8 @@ class GitHubUserView extends StatelessWidget {
               },
               child: const Text('Cargar Repositorios'),
             ),
+
+            vSpace(16),
           ],
         );
       },
