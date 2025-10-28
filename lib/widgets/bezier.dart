@@ -6,9 +6,13 @@ class BezierView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomPaint(
-        painter: BezierPainter(),
-        size: Size.infinite, // usa toda la pantalla
+      body: Stack(
+        children: [
+          CustomPaint(
+            size: Size.infinite,
+            painter: BezierPainter(),
+          ),
+          ],
       ),
     );
   }
@@ -18,16 +22,23 @@ class BezierPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = Colors.pink.shade100
       ..strokeWidth = 4
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.fill;
 
-    final path = Path();
-    path.moveTo(0, size.height * 0.5); // punto inicial
-    path.quadraticBezierTo(
-      size.width * 0.5, size.height * 0.2, // punto de control
-      size.width, size.height * 0.5,       // punto final
-    );
+    final path = Path()
+    ..moveTo(0, size.height * 0.5)
+    ..quadraticBezierTo(
+      size.width * 0.5,
+      size.height * 0.7, 
+      size.width,
+      size.height * 0.5, 
+    )
+
+    ..lineTo(size.width, 0)
+    ..lineTo(0, 0)
+    ..close();
+
 
     canvas.drawPath(path, paint);
   }
